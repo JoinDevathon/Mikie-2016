@@ -9,11 +9,12 @@ public class DevathonPlugin extends JavaPlugin {
     public void onEnable() {
         Bukkit.getPluginManager().getPlugin("DevathonPlugin");
         Bukkit.getPluginManager().registerEvents(new PlayerInteract(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
     }
 
     @Override
     public void onDisable() {
-
+  //code here
     }
 }
 
