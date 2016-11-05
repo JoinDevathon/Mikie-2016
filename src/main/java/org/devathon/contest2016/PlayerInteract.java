@@ -2,14 +2,18 @@ package org.devathon.contest2016;
 
 import net.minecraft.server.v1_10_R1.Material;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_10_R1.entity.CraftLivingEntity;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.EulerAngle;
 
 import static org.bukkit.event.block.Action.LEFT_CLICK_BLOCK;
 
@@ -33,25 +37,27 @@ public class PlayerInteract implements Listener {
             e.setCancelled(true);
         }
         Guardian g = (Guardian) p.getWorld().spawnEntity(p.getLocation().add(0, 5, 2), EntityType.GUARDIAN);
-        Bat b = (Bat) p.getWorld().spawnEntity(p.getLocation().add(0, 5, 2), EntityType.BAT);
         ArmorStand a = (ArmorStand) p.getWorld().spawnEntity(p.getLocation().add(0, 5, 2), EntityType.ARMOR_STAND);
-        a.setVisible(true);
-        b.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1, true, false));
-        b.setPassenger(a);
-        b.setGravity(true);
-        a.setGravity(false);
-        a.setPassenger(g);
-        g.setGravity(false);
-        b.setMaxHealth(Integer.MAX_VALUE);
-        g.setMaxHealth(Integer.MAX_VALUE);
+        Bat b = (Bat) p.getWorld().spawnEntity(p.getLocation().add(0.5, 0.5, 0.5), EntityType.BAT);
+        b.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, Integer.MAX_VALUE, 1, true, false));
+
         g.setRemoveWhenFarAway(false);
         b.setRemoveWhenFarAway(false);
         a.setRemoveWhenFarAway(false);
-        g.setRemainingAir(Integer.MAX_VALUE);
-        b.setRemainingAir(Integer.MAX_VALUE);
-        a.setRemainingAir(Integer.MAX_VALUE);
-        g.getRemoveWhenFarAway();
-        g.setAI(true);
+        b.setPassenger(a);
+        a.setPassenger(g);
+        b.setGravity(false);
+        a.setGravity(false);
+        g.setGravity(false);
+        b.setMaxHealth(Integer.MAX_VALUE);
+        g.setMaxHealth(Integer.MAX_VALUE);
+        g.setCustomName(ChatColor.RED + "MRMEOW123");
+        g.setCustomNameVisible(true);
+        g.setAI(false);
+        a.setAI(false);
+        b.setAI(true);
+        a.getRightLegPose().add(6, 3, 3);
+
         p.sendMessage("I hope this works");
 
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
