@@ -1,11 +1,9 @@
 package org.devathon.contest2016;
 
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Guardian;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Sheep;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -21,15 +19,15 @@ public class PlayerInteract implements Listener {
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
 
-        Action action = e.getAction();
-        if(e.getAction() == Action.LEFT_CLICK_AIR);
-        e.setCancelled(true);
+        if(e.getAction() == Action.LEFT_CLICK_AIR || !e.getPlayer().getItemInHand().getType().equals(Material.BLAZE_ROD)){
+            e.setCancelled(true);
+        }
 
-        e.getPlayer().getInventory().getItemInOffHand().equals(Material.BLAZE_ROD);
 
         Guardian g = (Guardian) p.getWorld().spawnEntity(p.getLocation(), EntityType.GUARDIAN);
         g.setGravity(false);
-        g.setGlowing(true);
+        g.setGlowing(false);
+        g.getLeashHolder().equals(Material.BLAZE_ROD);
         p.sendMessage("I hope this works");
 
     }
