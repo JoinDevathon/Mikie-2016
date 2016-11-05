@@ -27,9 +27,10 @@ public class PlayerInteract implements Listener {
 
         e.getPlayer().getInventory().getItemInOffHand().equals(Material.BLAZE_ROD);
 
-
         Guardian g = (Guardian) p.getWorld().spawnEntity(p.getLocation(), EntityType.GUARDIAN);
         g.setGravity(false);
+        g.setGlowing(true);
+        p.sendMessage("I hope this works");
 
     }
 }
