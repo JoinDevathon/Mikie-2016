@@ -21,12 +21,12 @@ public class PlayerInteract implements Listener {
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
 
-     Action action = e.getAction();
-        if(e.getAction() == Action.LEFT_CLICK_AIR)
-            e.setCancelled(true);
+        Action action = e.getAction();
+        if(e.getAction() == Action.LEFT_CLICK_AIR);
+        e.setCancelled(true);
 
-        if (p.getItemInHand().getType().equals(Material.BLAZE_ROD))
-            return;
+        e.getPlayer().getInventory().getItemInOffHand().equals(Material.BLAZE_ROD);
+
 
         Guardian g = (Guardian) p.getWorld().spawnEntity(p.getLocation(), EntityType.GUARDIAN);
         g.setGravity(false);
