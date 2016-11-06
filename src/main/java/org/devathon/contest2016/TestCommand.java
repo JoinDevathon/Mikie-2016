@@ -1,5 +1,6 @@
 package org.devathon.contest2016;
 
+import com.sun.org.apache.xpath.internal.axes.WalkingIterator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -34,17 +35,18 @@ public class TestCommand implements CommandExecutor {
                 public void run() {
                     Player p = (Player) sender;
                     Location loc = p.getLocation();
-                    WitherSkull b = (WitherSkull) p.getWorld().spawnEntity(p.getLocation().add(5, 5, 2), EntityType.WITHER_SKULL);
+                    Wither b = (Wither) p.getWorld().spawnEntity(p.getLocation().add(5, 5, 2), EntityType.WITHER);
                     Guardian g = (Guardian) b.getWorld().spawnEntity(b.getLocation(), EntityType.GUARDIAN);
                     b.getWorld().setSpawnLocation(loc.getBlockY() + 10, 30, 20 + loc.getBlockZ());
                     b.setPassenger(g);
+                    b.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1, true, false));
                     g.setAI(true);
                     g.setGravity(false);
                     g.setRemoveWhenFarAway(false);
                     g.setMaxHealth(Integer.MAX_VALUE);
                     g.setCustomName(ChatColor.RED + "MRMEOW123");
                     g.setCustomNameVisible(true);
-                    DragonFireball fb = g.launchProjectile(DragonFireball.class);
+                    SmallFireball fb = g.launchProjectile(SmallFireball.class);
                     fb.setIsIncendiary(false);
                     fb.setYield(0);
                 }
