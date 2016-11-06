@@ -37,9 +37,10 @@ public class TestCommand implements CommandExecutor {
                     Location loc = p.getLocation();
                     Wither b = (Wither) p.getWorld().spawnEntity(p.getLocation().add(5, 5, 2), EntityType.WITHER);
                     Guardian g = (Guardian) b.getWorld().spawnEntity(b.getLocation(), EntityType.GUARDIAN);
+                    b.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1, true, false));
                     b.getWorld().setSpawnLocation(loc.getBlockY() + 10, 30, 20 + loc.getBlockZ());
                     b.setPassenger(g);
-                    b.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1, true, false));
+                    b.setTarget(p);
                     g.setAI(true);
                     g.setGravity(false);
                     g.setRemoveWhenFarAway(false);
