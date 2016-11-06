@@ -9,14 +9,14 @@ public class DevathonPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().getPlugin("DevathonPlugin");
-        Bukkit.getPluginManager().registerEvents(new PlayerInteract(this), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
-
+        getCommand("test").setExecutor(new TestCommand(this));
     }
+
 
     @Override
     public void onDisable() {
-        //c
+        this.getLogger().info("Machine Has been disabled");
     }
 }
 
